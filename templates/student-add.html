@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Example Flask App</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+<body>
+<h1>Welcome to Flass App</h1>
+<p>This is example of how to develpe Flask application!</p>
+<p>This is quick example!</p>
+<form method="post" action="/student-save">
+<table width="500px" border="0px" cellspacing="0px" cellpadding="5px">
+<tr><td>Name:</td><td><input type="text" name="name" maxlength="30" required /></td></tr>
+<tr><td>Address:</td><td><input type="text" name="address" maxlength="200" required /></td></tr>
+<tr><td>Standard:</td><td><input type="number" name="standard" maxlength="2" required /></td></tr>
+<tr><td></td><td><input type="submit" value="Save" />&nbsp;<input type="button" value="Cancel" onClick="history.back()" /></td></tr>
+</table>
+</form>
+</body>
+</html>

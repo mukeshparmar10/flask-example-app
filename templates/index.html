@@ -4,24 +4,32 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Example Flask App</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
 <body>
 <h1>Welcome to Flass App</h1>
 <p>This is example of how to develpe Flask application!</p>
 <p>This is quick example!</p>
+<a href="/student">New Student</a>
 <table width="500px" border="1px" cellspacing="0px" cellpadding="5px">
 <tr>
 	<th>#</th>
 	<th>Name</th>
 	<th>Address</th>
 	<th>Standard</th>
+	<th>Action</th>
 </tr>
+{% set ns = namespace(count=0) %}
 {% for s in data %}
+{% set ns.count = ns.count + 1 %}
 <tr align="center">
-	<td>{{s[0]}}</td>
+	<td>{{ns.count}}</td>
 	<td>{{s[1]}}</td>
 	<td>{{s[2]}}</td>
 	<td>{{s[3]}}</td>
+	<td>
+	<a href="/student-edit/{{s[0]}}">Edit</a> | <a href="/student-delete/{{s[0]}}">Delete</a>
+</td>
 </tr>
 {% endfor %}
 </table>
