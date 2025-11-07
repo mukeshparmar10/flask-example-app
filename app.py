@@ -1,7 +1,6 @@
 from flask import Flask, request, Response, redirect, url_for, session, render_template
 import mysql.connector
 import os
-from waitress import serve
 
 def connection():
 	mydb = mysql.connector.connect(
@@ -22,9 +21,7 @@ def index():
 	mycursor.execute("select * from student")
 	data = mycursor.fetchall()
 	mydb.close()
-	# return render_template("index.html",data=data)
-	return data
-
+	return render_template("index.html",data=data)	
 
 if __name__=="__main__":
-	serve(app,host="0.0.0.0",threads=10)
+	app(host="0.0.0.0",Debug=True)
