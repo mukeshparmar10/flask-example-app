@@ -2,6 +2,8 @@ from flask import Flask, request, Response, redirect, url_for, session, render_t
 import mysql.connector
 import os
 from flask_mail import Mail, Message
+from helper import add,sub
+from library import Maths
 
 def connection():
 	mydb = mysql.connector.connect(
@@ -158,6 +160,16 @@ def send_test_email():
         return "Email sent successfully!"
     except Exception as e:
         return f"Error sending email: {e}"
+
+@app.route("/test1")
+def test1():
+	return str(add(1,2))
+
+@app.route("/test2")
+def test2():
+	m = Maths()
+	# return str(m.mul(2,5))
+	return str(round(m.div(20,3),2))
 
 
 if __name__=="__main__":
