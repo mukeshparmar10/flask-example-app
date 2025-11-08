@@ -81,6 +81,9 @@ def home():
 
 @app.route("/student")
 def student():
+	if check_login()!="1":
+		return redirect(url_for("index"))
+
 	return render_template("student-add.html")
 
 @app.route('/student-save',methods=['POST'])
@@ -99,6 +102,9 @@ def student_save():
 
 @app.route("/student-edit/<id>")
 def student_edit(id):
+	if check_login()!="1":
+		return redirect(url_for("index"))
+		
 	mydb = connection()
 	mycursor = mydb.cursor()
 	mycursor.execute(f"select * from student where id = {id}")
