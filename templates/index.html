@@ -3,35 +3,68 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Example Flask App</title>
+	<title>Example Flask App Login</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 </head>
 <body>
-<h1>Welcome to Flass App</h1>
+<h1>Welcome to Flask App</h1>
 <p>This is example of how to develpe Flask application!</p>
 <p>This is quick example!</p>
-<a href="/student">New Student</a>
-<table width="500px" border="1px" cellspacing="0px" cellpadding="5px">
+<table width="500px" border="0px" cellspacing="0px" cellpadding="5px">
 <tr>
-	<th>#</th>
-	<th>Name</th>
-	<th>Address</th>
-	<th>Standard</th>
-	<th>Action</th>
+	<td>Email:</td><td><input type="text" name="email" id="email" /></td>
 </tr>
-{% set ns = namespace(count=0) %}
-{% for s in data %}
-{% set ns.count = ns.count + 1 %}
-<tr align="center">
-	<td>{{ns.count}}</td>
-	<td>{{s[1]}}</td>
-	<td>{{s[2]}}</td>
-	<td>{{s[3]}}</td>
-	<td>
-	<a href="/student-edit/{{s[0]}}">Edit</a> | <a href="/student-delete/{{s[0]}}">Delete</a>
-</td>
+<tr>
+	<td>Password:</td><td><input type="password" name="password" id="password" /></td>
 </tr>
-{% endfor %}
+<tr>
+	<td></td><td><input type="button" value="Login" onClick="login()" /></td>
+</tr>
 </table>
+<script>
+	function login()
+	{
+		var valid=true;
+		if($("#email").val()=="")
+		{
+			alert("Please enter email!");
+			valid = false;
+			$("#email").focus();
+			return false;
+		}
+		else
+		{
+			var email = $("#email").val();
+		}
+
+		if($("#password").val()=="")
+		{
+			alert("Please enter password!");
+			valid = false;
+			$("#password").focus();
+			return false;
+		}
+		else
+		{
+			var password = $("#password").val();
+		}
+
+		if(valid)
+		{
+			$.post("/login",{email:email,password:password},function(data){
+				if(data=="0")
+				{
+					alert("Invalid email or password!")
+				}
+				else
+				{
+					window.location.href = "/home";
+				}
+			});
+		}
+
+	}
+</script>
 </body>
 </html>
