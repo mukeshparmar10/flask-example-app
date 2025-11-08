@@ -64,7 +64,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-	session.pop('email', None)    
+	session.pop('email', None)
+	session.clear()
 	return redirect(url_for('index'))
 
 @app.route("/home")
@@ -104,7 +105,7 @@ def student_save():
 def student_edit(id):
 	if check_login()!="1":
 		return redirect(url_for("index"))
-		
+
 	mydb = connection()
 	mycursor = mydb.cursor()
 	mycursor.execute(f"select * from student where id = {id}")
