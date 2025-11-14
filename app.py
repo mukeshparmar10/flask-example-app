@@ -171,6 +171,10 @@ def test2():
 	# return str(m.mul(2,5))
 	return str(round(m.div(20,3),2))
 
+@app.route("/loaderio-9cd6ab731d296119c00571eb8246bcbb.txt")
+def loaderio():
+	return "loaderio-9cd6ab731d296119c00571eb8246bcbb"
+
 
 if __name__=="__main__":
 	app.run(host="0.0.0.0",debug=True)
